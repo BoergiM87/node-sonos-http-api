@@ -1,0 +1,20 @@
+'use strict';
+
+var fs = require('fs');
+
+function getclips() {
+	return new Promise(function(fulfill, reject) {
+		var path = "./static/clips";
+		fs.readdir(path, function(err, items) {
+			if (err) {
+				reject(err);
+				return;
+			}
+			fulfill(items);
+		});
+	});
+}
+
+module.exports = function (api) {
+    api.registerAction('getclips', getclips);
+};
